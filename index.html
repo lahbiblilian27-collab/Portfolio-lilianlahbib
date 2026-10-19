@@ -154,7 +154,7 @@ var CLIPS=[
  {f:"Presse écrite",t:"« Merci le foot pour les rencontres… » Vanessa Le Moigne ne couvrira plus le football sur beIN Sports",m:"Paris-Normandie · 23 janvier 2026",d:"Un article d’actualité sportive consacré à l’annonce de la journaliste Vanessa Le Moigne de ne plus couvrir le football.",k:"Lire l’article sur Paris-Normandie",u:"https://www.paris-normandie.fr/id691546/article/2026-01-23/merci-le-foot-pour-les-rencontres-vanessa-le-moigne-ne-couvrira-plus-le-football"},
  {f:"Presse écrite",t:"Le grimpeur américain Alex Honnold va gravir une tour de 500 mètres sans corde en direct sur Netflix",m:"Paris-Normandie · 24 janvier 2026",d:"Un article autour du défi spectaculaire du grimpeur Alex Honnold, qui prévoit d’escalader une tour de 500 mètres sans corde lors d’une retransmission en direct sur Netflix.",k:"Lire l’article sur Paris-Normandie",u:"https://www.paris-normandie.fr/id691680/article/2026-01-24/le-grimpeur-americain-alex-honnold-va-gravir-une-tour-de-500-metres-sans-corde"},
  {f:"Vidéo",t:"Clément Bassin : montée en Ligue 2 du FC Rouen, l’arrivée de la Ligue 3 vues par le capitaine",m:"FaceCaméra · 12 mai 2026",d:"Épisode 1 de Face Cam’, une série d’interviews face caméra. Je suis l’un des trois journalistes de l’émission avec Jules Beuzon et Baptiste Frebourg. Le capitaine du FC Rouen raconte son rôle dans le vestiaire, ses meilleurs souvenirs et la montée en Ligue 2.",k:"Voir sur YouTube",u:"https://www.youtube.com/watch?v=kS8fXkUkdyw",v:"kS8fXkUkdyw"},
- {f:"Radio",t:"[Titre de ton sujet radio]",m:"[Radio ou école] · [date]",d:"[Durée, sujet, ton rôle.]",k:"Écouter",u:"#"},
+ {f:"Radio",t:"I love Rouen · projet final « carte blanche »",m:"Institut européen de journalisme",d:"Projet radio de fin d’année réalisé en groupe de cinq. Durée : 27 minutes.",k:"",u:"",a:"i-love-rouen.mp3"},
  {f:"Reportage télé",t:"[Titre de ton reportage]",m:"[Chaîne ou école] · [date]",d:"[Durée, sujet, ton rôle.]",k:"Voir",u:"#"}
 ];
 
@@ -165,7 +165,7 @@ function draw(){
   chips.innerHTML=formats.map(function(f){return '<button class="chip" aria-pressed="'+(f===cur)+'" data-f="'+esc(f)+'">'+esc(f)+'</button>'}).join('');
   var list=CLIPS.filter(function(c){return cur==="Tout"||c.f===cur});
   grid.innerHTML=list.length?list.map(function(c){
-    return '<details class="clip"><summary><span class="fmt">'+esc(c.f)+' · '+esc(c.m)+'</span><h3>'+esc(c.t)+'</h3></summary><div class="more"><p>'+esc(c.d)+'</p>'+(c.v?'<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/'+esc(c.v)+'" title="Vidéo Face Cam Clément Bassin" loading="lazy" allowfullscreen></iframe></div>':'')+'<p><a href="'+esc(c.u)+'">'+esc(c.k)+'</a></p></div></details>'
+    return '<details class="clip"><summary><span class="fmt">'+esc(c.f)+' · '+esc(c.m)+'</span><h3>'+esc(c.t)+'</h3></summary><div class="more"><p>'+esc(c.d)+'</p>'+(c.v?'<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/'+esc(c.v)+'" title="Vidéo Face Cam Clément Bassin" loading="lazy" allowfullscreen></iframe></div>':'')+(c.a?'<audio controls preload="none" style="width:100%;margin:.6rem 0" src="'+esc(c.a)+'"></audio>':'')+(c.u?'<p><a href="'+esc(c.u)+'">'+esc(c.k)+'</a></p>':'')+'</div></details>'
   }).join(''):'<p class="empty">Rien dans ce format pour l’instant.</p>';
 }
 chips.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b){cur=b.dataset.f;draw()}});
